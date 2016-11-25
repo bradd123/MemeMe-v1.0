@@ -9,7 +9,7 @@
         <!--View Controller-->
         <scene sceneID="9AE-tM-Fo0">
             <objects>
-                <viewController id="Wor-tA-hFT" sceneMemberID="viewController">
+                <viewController id="Wor-tA-hFT" customClass="ViewController" customModule="MemeMe_v1_0" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="USn-an-lsX"/>
                         <viewControllerLayoutGuide type="bottom" id="Oyb-S6-1Cc"/>
@@ -26,7 +26,11 @@
                                 <frame key="frameInset" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem systemItem="camera" id="qmd-6H-02y"/>
+                                    <barButtonItem systemItem="camera" id="qmd-6H-02y">
+                                        <connections>
+                                            <action selector="pickAnImage:" destination="Wor-tA-hFT" id="SOW-xt-Ixn"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L4J-1i-MZb"/>
                                     <barButtonItem title="Album" id="wcA-JY-9ld"/>
                                 </items>
@@ -44,6 +48,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="memeImage" destination="scs-0E-aI8" id="zXd-K3-61H"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2aq-84-cxQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
