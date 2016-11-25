@@ -26,6 +26,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
+        imagePicker.allowsEditing = true
         present(imagePicker, animated: true, completion: nil)
         
     }
