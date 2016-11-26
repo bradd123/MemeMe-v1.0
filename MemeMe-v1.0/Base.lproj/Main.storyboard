@@ -53,6 +53,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="cameraButton" destination="qmd-6H-02y" id="hCo-9x-imj"/>
                         <outlet property="memeImage" destination="scs-0E-aI8" id="zXd-K3-61H"/>
                     </connections>
                 </viewController>
