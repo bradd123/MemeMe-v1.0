@@ -32,7 +32,11 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="L4J-1i-MZb"/>
-                                    <barButtonItem title="Album" id="wcA-JY-9ld"/>
+                                    <barButtonItem title="Album" id="wcA-JY-9ld">
+                                        <connections>
+                                            <action selector="pickAnImageFromAlbum:" destination="Wor-tA-hFT" id="KCZ-vD-vTp"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CRD-Bu-YkJ">
