@@ -16,6 +16,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var topTextField: UITextField!
     @IBOutlet var bottomTextField: UITextField!
     
+    @IBOutlet var navbar: UINavigationBar!
+    @IBOutlet var toolbar: UIToolbar!
+    
+    @IBOutlet var share: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -45,11 +50,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        share.isEnabled = (memeImage.image != nil)
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
     
@@ -65,13 +71,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = getKeyboardHeight(notification) * -1
         }
     }
     
     func keyboardWillHide(_ notification: Notification) {
         if bottomTextField.isFirstResponder {
-            view.frame.origin.y += getKeyboardHeight(notification)
+            view.frame.origin.y = 0
         }
     }
     
@@ -122,12 +128,48 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.placeholder = nil
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    @IBAction func shareImage(_ sender: AnyObject) {
+        let completedMemeImage: UIImage = generateMemedImage()
+        let activityController = UIActivityViewController(activityItems: [completedMemeImage], applicationActivities: nil)
+        activityController.completionWithItemsHandler = { activity, completed, returned, error in
+            if completed {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
+        present(activityController, animated: true, completion: nil)
+    }
+    
+    @IBAction func cancelPressed(_ sender: AnyObject) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func generateMemedImage() -> UIImage {
+        // Hide toolbar and navbar
+        navbar.isHidden = true
+        toolbar.isHidden = true
+        
+        // Render view to an image
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        // show toolbar and navbar
+        navbar.isHidden = false
+        navbar.isHidden = false
+        
+        return memedImage
     }
 
 }

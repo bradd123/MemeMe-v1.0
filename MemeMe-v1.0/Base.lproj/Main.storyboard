@@ -44,8 +44,16 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Title" id="UU2-Ln-THc">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="R4F-2D-lJX"/>
-                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="4JU-Gd-Xe6"/>
+                                        <barButtonItem key="leftBarButtonItem" systemItem="action" id="R4F-2D-lJX">
+                                            <connections>
+                                                <action selector="shareImage:" destination="Wor-tA-hFT" id="JNL-sv-HUR"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="4JU-Gd-Xe6">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="Wor-tA-hFT" id="emE-YK-NXL"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -70,6 +78,9 @@
                         <outlet property="bottomTextField" destination="Kxa-5b-utf" id="R54-JS-Cer"/>
                         <outlet property="cameraButton" destination="qmd-6H-02y" id="hCo-9x-imj"/>
                         <outlet property="memeImage" destination="scs-0E-aI8" id="zXd-K3-61H"/>
+                        <outlet property="navbar" destination="CRD-Bu-YkJ" id="83V-IK-How"/>
+                        <outlet property="share" destination="R4F-2D-lJX" id="kB9-9F-9Ap"/>
+                        <outlet property="toolbar" destination="nyx-qJ-tdK" id="alI-2V-ofS"/>
                         <outlet property="topTextField" destination="GNo-Xx-htw" id="bFg-2T-WTq"/>
                     </connections>
                 </viewController>
